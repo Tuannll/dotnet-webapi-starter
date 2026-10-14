@@ -1,0 +1,23 @@
+## Build & Output
+bin/
+obj/
+out/
+
+## Visual Studio & VS Code
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.user
+*.userosscache
+*.sln.docstates
+
+## JetBrains Rider
+.idea/
+*.sln.iml
+
+## OS specific
+.DS_Store
+Thumbs.db

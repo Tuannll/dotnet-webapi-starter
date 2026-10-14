@@ -1,0 +1,74 @@
+@WebAPIDemo_HostAddress = http://localhost:5065
+
+### 1. Products - Get All (Paged & Filtered)
+GET {{WebAPIDemo_HostAddress}}/api/products?pageSize=10&pageIndex=1&keyword=Banh
+Accept: application/json
+
+### 2. Products - Get By Id
+GET {{WebAPIDemo_HostAddress}}/api/products/1
+Accept: application/json
+
+### 3. Products - Get By Non-Existing Id (Expect 404)
+GET {{WebAPIDemo_HostAddress}}/api/products/999
+Accept: application/json
+
+### 4. Products - Create Valid
+POST {{WebAPIDemo_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Tra sua tran chau",
+  "price": 35000
+}
+
+### 5. Products - Create Invalid (Expect 400 Validation Error)
+POST {{WebAPIDemo_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": -5000
+}
+
+### 6. Products - Update
+PUT {{WebAPIDemo_HostAddress}}/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Banh mi thit nuong",
+  "price": 25000
+}
+
+### 7. Products - Delete
+DELETE {{WebAPIDemo_HostAddress}}/api/products/3
+
+###
+
+### 8. Students - Get All (Paged)
+GET {{WebAPIDemo_HostAddress}}/api/students?pageSize=5&pageIndex=1
+Accept: application/json
+
+### 9. Students - Get By Id
+GET {{WebAPIDemo_HostAddress}}/api/students/1
+Accept: application/json
+
+### 10. Students - Create Valid
+POST {{WebAPIDemo_HostAddress}}/api/students
+Content-Type: application/json
+
+{
+  "name": "Hoang Van D",
+  "age": 23
+}
+
+### 11. Students - Update
+PUT {{WebAPIDemo_HostAddress}}/api/students/1
+Content-Type: application/json
+
+{
+  "name": "Nguyen Van A Pro",
+  "age": 21
+}
+
+### 12. Students - Delete
+DELETE {{WebAPIDemo_HostAddress}}/api/students/2
