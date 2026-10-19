@@ -1,41 +1,45 @@
 <div align="center">
 
-# ASP.NET Core Web API Starter
+# 🚀 ASP.NET Core Web API Starter
 
-**Template Web API sạch, chuẩn RESTful, thuần Async và Thread-safe trên nền .NET 10 & C# 13.**
+**Clean, RESTful, purely asynchronous, and thread-safe Web API template built with .NET 10 & C# 13.**
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Tuannll/dotnet-webapi-starter/ci.yml?branch=main&style=flat-square&logo=githubactions&logoColor=white)](https://github.com/Tuannll/dotnet-webapi-starter/actions/workflows/ci.yml)
-[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
-[![C#](https://img.shields.io/badge/C%23-13.0-239120?style=flat-square&logo=csharp&logoColor=white)](https://learn.microsoft.com/dotnet/csharp/)
-[![OpenAPI](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=flat-square&logo=swagger&logoColor=black)](https://swagger.io/)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/Tuannll/dotnet-webapi-starter/ci.yml?branch=main&logo=githubactions&logoColor=white)](https://github.com/Tuannll/dotnet-webapi-starter/actions/workflows/ci.yml)
+[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![C#](https://img.shields.io/badge/C%23-13.0-239120?logo=csharp&logoColor=white)](https://learn.microsoft.com/dotnet/csharp/)
+[![OpenAPI](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?logo=swagger&logoColor=black)](https://swagger.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**[Tính năng](#-tính-năng) • [Khởi động nhanh](#-khởi-động-nhanh) • [Cấu trúc](#-cấu-trúc-dự-án) • [API Endpoints](#-danh-sách-api) • [FAQ](#-faq)**
+**English** | [Tiếng Việt](README.vi.md)
+
+**[✨ Features](#features) • [🚀 Quick Start](#quick-start) • [📁 Structure](#structure) • [📡 Endpoints](#endpoints) • [❓ FAQ](#faq)**
 
 </div>
 
 ---
 
-## ✨ Tính năng
+<a id="features"></a>
+## ✨ Features
 
-| Nhóm | Mô tả chi tiết |
+| Domain | Description |
 | ---- | -------------- |
-| **Kiến trúc 3 lớp** | Phân tầng rõ ràng: `Controllers` ➔ `Services` ➔ `Infrastructures`. |
-| **Zero Setup DB** | Tích hợp sẵn In-Memory Mock Store, không cần cài đặt SQL Server hay Docker. |
-| **Thread-Safe** | Dữ liệu lưu trữ an toàn bằng `ConcurrentDictionary` và cấp phát ID nguyên tử qua `Interlocked.Increment`. |
-| **100% Async I/O** | Toàn bộ tầng Controller và Service xử lý bất đồng bộ qua `Task<T>`. |
-| **Xử lý lỗi tập trung** | `GlobalExceptionMiddleware` tự động bắt và trả lỗi chuẩn JSON `{ isSuccess, statusCode, errorCode, message }`. |
-| **Data Validation** | Tự động chặn dữ liệu sai qua DataAnnotations và `InvalidModelStateResponseFactory`. |
-| **Công cụ test sẵn** | Đi kèm Swagger UI trực quan và file `WebAPIDemo.http` gồm 12 kịch bản test có sẵn. |
+| **3-Tier Architecture** | Clean separation of concerns: `Controllers` ➔ `Services` ➔ `Infrastructures`. |
+| **Zero Setup DB** | Built-in in-memory mock store—run immediately without installing SQL Server or Docker. |
+| **Thread-Safe Storage** | Safe concurrency via `ConcurrentDictionary` and atomic primary key assignment using `Interlocked.Increment`. |
+| **100% Async I/O** | All controller and service operations are non-blocking via `Task<T>`. |
+| **Centralized Error Handling** | `GlobalExceptionMiddleware` captures exceptions and standardizes responses: `{ isSuccess, statusCode, errorCode, message }`. |
+| **Model Validation** | Automatic bad-request rejection via DataAnnotations and customized `InvalidModelStateResponseFactory`. |
+| **Ready-to-Test Tooling** | Interactive Swagger UI alongside a pre-configured `WebAPIDemo.http` file containing 12 ready-to-run requests. |
 
 ---
 
-## 🚀 Khởi động nhanh
+<a id="quick-start"></a>
+## 🚀 Quick Start
 
-### Yêu cầu môi trường
-- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) trở lên.
+### Prerequisites
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or higher.
 
-### 1. Clone và khởi chạy
+### 1. Clone & Run
 
 ```bash
 git clone https://github.com/Tuannll/dotnet-webapi-starter.git
@@ -43,77 +47,80 @@ cd dotnet-webapi-starter
 dotnet run
 ```
 
-### 2. Truy cập tài liệu API (Swagger UI)
+### 2. Interactive API Documentation (Swagger UI)
 
-Mở trình duyệt tại:
+Open in your browser:
 - **Swagger UI:** `http://localhost:5065/swagger`
-- **OpenAPI Json:** `http://localhost:5065/openapi/v1.json`
+- **OpenAPI Schema:** `http://localhost:5065/openapi/v1.json`
 
 > [!TIP]
-> Bạn có thể mở file `WebAPIDemo.http` ngay trong VS Code (kèm extension REST Client) hoặc Visual Studio để gửi request test trực tiếp không cần mở Postman.
+> Open `WebAPIDemo.http` directly in VS Code (with the REST Client extension) or Visual Studio to trigger automated test requests without Postman.
 
 ---
 
-## 📁 Cấu trúc dự án
+<a id="structure"></a>
+## 📁 Project Structure
 
 ```text
 dotnet-webapi-starter/
-├── Controllers/              # Tiếp nhận HTTP Request, routing, trả HTTP Status Code
+├── Controllers/              # HTTP Request handling, routing, and HTTP status codes
 │   ├── ProductsController.cs
 │   └── StudentsController.cs
-├── Dtos/                     # Đối tượng truyền dữ liệu & Validation Rules
-│   ├── FilterDto.cs          # Phân trang và tìm kiếm cơ sở
-│   ├── PagingDto.cs          # Kết quả phân trang bọc ngoài
+├── Dtos/                     # Data Transfer Objects & Validation Rules
+│   ├── FilterDto.cs          # Base pagination and search filters
+│   ├── PagingDto.cs          # Generic pagination response envelope
 │   ├── Products/
 │   └── Students/
-├── Exceptions/               # Định nghĩa lỗi nghiệp vụ tùy chỉnh
+├── Exceptions/               # Custom business domain exceptions
 │   ├── ErrorCodes.cs
 │   └── UserFriendlyException.cs
-├── Infrastructures/          # Kho lưu trữ dữ liệu (Thread-safe In-Memory Store)
+├── Infrastructures/          # Persistence layer (Thread-safe In-Memory Store)
 │   ├── ApplicationDbContext.cs
 │   └── IApplicationDbContext.cs
-├── Middleware/               # Bắt ngoại lệ toàn cục & chuẩn hóa Response lỗi
+├── Middleware/               # Global exception interception & standardized response envelopes
 │   └── GlobalExceptionMiddleware.cs
 ├── Models/                   # Domain Entities
 │   ├── Product.cs
 │   └── Student.cs
-├── Services/                 # Tầng xử lý nghiệp vụ (Business Logic)
+├── Services/                 # Business logic implementation
 │   ├── Abstracts/
 │   └── Implements/
-├── Program.cs                # Cấu hình DI, Middleware, Swagger và Pipeline
-├── WebAPIDemo.http           # 12 kịch bản test API tự động
+├── Program.cs                # Dependency injection, middleware pipeline, and Swagger configuration
+├── WebAPIDemo.http           # 12 automated API test scenarios
 └── WebAPIDemo.csproj
 ```
 
 ---
 
-## 📡 Danh sách API
+<a id="endpoints"></a>
+## 📡 API Endpoints
 
 ### 1. Products (`/api/products`)
 
-| Method | Endpoint | Mô tả |
+| Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/api/products` | Lấy danh sách sản phẩm (hỗ trợ phân trang, lọc theo giá, tìm theo tên) |
-| `GET` | `/api/products/{id}` | Lấy chi tiết sản phẩm theo ID |
-| `POST` | `/api/products` | Thêm sản phẩm mới (`201 Created` + `Location` header) |
-| `PUT` | `/api/products/{id}` | Cập nhật thông tin sản phẩm |
-| `DELETE` | `/api/products/{id}` | Xóa sản phẩm theo ID (`204 NoContent`) |
+| `GET` | `/api/products` | Retrieve products (supports pagination, price range filters, and search by name) |
+| `GET` | `/api/products/{id}` | Get product details by ID |
+| `POST` | `/api/products` | Create product (`201 Created` with `Location` header) |
+| `PUT` | `/api/products/{id}` | Update product details |
+| `DELETE` | `/api/products/{id}` | Delete product by ID (`204 NoContent`) |
 
 ### 2. Students (`/api/students`)
 
-| Method | Endpoint | Mô tả |
+| Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/api/students` | Lấy danh sách sinh viên (hỗ trợ phân trang, lọc theo tuổi, tìm theo tên) |
-| `GET` | `/api/students/{id}` | Lấy chi tiết sinh viên theo ID |
-| `POST` | `/api/students` | Thêm sinh viên mới |
-| `PUT` | `/api/students/{id}` | Cập nhật sinh viên |
-| `DELETE` | `/api/students/{id}` | Xóa sinh viên |
+| `GET` | `/api/students` | Retrieve students (supports pagination, age filtering, and search by name) |
+| `GET` | `/api/students/{id}` | Get student details by ID |
+| `POST` | `/api/students` | Create student record |
+| `PUT` | `/api/students/{id}` | Update student record |
+| `DELETE` | `/api/students/{id}` | Delete student record |
 
 ---
 
-## 🛡️ Định dạng phản hồi lỗi (Error Response Format)
+<a id="error-handling"></a>
+## 🛡️ Error Response Envelope
 
-Mọi lỗi trả về từ hệ thống đều tuân thủ cấu trúc đồng nhất:
+All API errors return a uniform JSON schema:
 
 ```json
 {
@@ -126,16 +133,26 @@ Mọi lỗi trả về từ hệ thống đều tuân thủ cấu trúc đồng 
 
 ---
 
+<a id="faq"></a>
 ## ❓ FAQ
 
-**Q: Làm sao để chuyển sang dùng SQL Server / PostgreSQL thật?**  
-A: Tạo DbContext kế thừa từ `Microsoft.EntityFrameworkCore.DbContext`, cài gói NuGet tương ứng (`Microsoft.EntityFrameworkCore.SqlServer` hoặc `Npgsql.EntityFrameworkCore.PostgreSQL`), sau đó cập nhật đăng ký `IApplicationDbContext` trong `Program.cs`.
+<details>
+<summary><b>1. How do I switch to a production database (SQL Server or PostgreSQL)?</b></summary>
+<br/>
 
-**Q: Repo này có phù hợp để làm mock server cho Frontend không?**  
-A: Có. Dữ liệu mock có sẵn, thao tác CRUD hoạt động ngay trong bộ nhớ, không cần cấu hình cơ sở dữ liệu.
+Create a DbContext class inheriting from `Microsoft.EntityFrameworkCore.DbContext`, install the appropriate EF Core provider package (`Microsoft.EntityFrameworkCore.SqlServer` or `Npgsql.EntityFrameworkCore.PostgreSQL`), and register `IApplicationDbContext` inside `Program.cs`.
+</details>
+
+<details>
+<summary><b>2. Is this starter suitable as a mock backend for frontend development?</b></summary>
+<br/>
+
+Yes. The repository includes built-in mock data and performs full in-memory CRUD operations out of the box without requiring external database engines.
+</details>
 
 ---
 
+<a id="license"></a>
 ## 📄 License
 
-Phát hành dưới giấy phép [MIT](LICENSE). Tự do sử dụng và tùy biến cho mục đích cá nhân lẫn thương mại.
+Distributed under the [MIT License](LICENSE). Free for personal and commercial customization.
